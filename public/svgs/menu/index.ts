@@ -1,0 +1,9 @@
+export { default as BookmarkIcon } from "./bookmark.svg";
+export { default as CallIcon } from "./call.svg";
+export { default as ContactsIcon } from "./contacts.svg";
+export { default as GroupIcon } from "./group.svg";
+export { default as MegaphoneIcon } from "./megaphone.svg";
+export { default as MenuIcon } from "./menu.svg";
+export { default as MoonIcon } from "./moon.svg";
+export { default as PlusIcon } from "./plus.svg";
+export { default as SettingsIcon } from "./settings.svg";
