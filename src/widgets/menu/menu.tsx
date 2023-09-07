@@ -17,23 +17,19 @@ import { UserProfile } from "./user-profile";
 import { CommunityWidget, CommunityWidgetType } from "./widget";
 import { BgEffects } from "gram/shared/components/absolute-positioning-utile";
 import { ContactList } from "./contact-list";
+import { Settings } from "./settings";
+import { animations } from "gram/utils";
 
 export const Menu = () => {
-  const {
-    openOverlay,
-    closeOverlay,
-    overlayProps: { isOpen },
-  } = useContext(overlayContext);
+  const { openOverlay, closeOverlay } = useContext(overlayContext);
+
   return (
     <PositionElementAbsolutely
       bgOnClick={closeOverlay}
       bgEffects={BgEffects.SHADING}
+      contentClassName={animations.slide}
     >
-      <div
-        className={`flex h-full w-fit flex-col gap-4 bg-black-400 pt-5 transition-all duration-1000 ${
-          isOpen ? "" : "-translate-x-full"
-        }`}
-      >
+      <div className={`flex h-full w-fit flex-col gap-4 bg-black-400 pt-5`}>
         <UserProfile />
         <div className="w-fit border-t-2 border-black-600">
           <Button
@@ -70,7 +66,13 @@ export const Menu = () => {
             <BookmarkIcon />
             Saved Messages
           </Button>
-          <Button buttonStyleType={ButtonStyleType.MENU}>
+          <Button
+            buttonStyleType={ButtonStyleType.MENU}
+            onClick={() => {
+              closeOverlay();
+              openOverlay(<Settings />);
+            }}
+          >
             <SettingsIcon />
             Settings
           </Button>
