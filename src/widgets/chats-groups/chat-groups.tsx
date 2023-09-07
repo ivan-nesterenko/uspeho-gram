@@ -8,12 +8,12 @@ import { GroupSettingsIcon, MessagesIcon } from "public/svgs";
 import { Folder } from "./folder";
 import { Menu } from "./menu";
 import { useContext, type FC } from "react";
-import { EditWidget } from "./edit-widget";
+import { Edit } from "./edit";
 
 export const ChatGroups: FC = () => {
   const { openOverlay } = useContext(overlayContext);
   return (
-    <div className="flex h-full flex-col bg-black-600">
+    <div className="flex h-full flex-col  bg-black-600">
       <Menu />
 
       <Button buttonStyleType={ButtonStyleType.GROUP} className="relative">
@@ -27,7 +27,7 @@ export const ChatGroups: FC = () => {
       <Folder name="Programing" />
       <Button
         buttonStyleType={ButtonStyleType.GROUP}
-        onClick={() => openOverlay(<EditWidget />)}
+        onClick={() => openOverlay(<Edit />)}
       >
         <GroupSettingsIcon />
         Edit
