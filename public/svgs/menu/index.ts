@@ -7,3 +7,4 @@ export { default as MenuIcon } from "./menu.svg";
 export { default as MoonIcon } from "./moon.svg";
 export { default as PlusIcon } from "./plus.svg";
 export { default as SettingsIcon } from "./settings.svg";
+export * from "./settings";
