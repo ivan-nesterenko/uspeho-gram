@@ -5,10 +5,12 @@ import {
   ButtonStyleType,
   Input,
   InputStyleType,
+  Widget,
 } from "gram/shared";
 import { BgEffects } from "gram/shared/components/absolute-positioning-utile";
 import { useContext } from "react";
 import { Contact } from "./contact";
+import { animations, AnimationsTimingKeys } from "gram/utils";
 
 export const ContactList = () => {
   const { closeOverlay } = useContext(overlayContext);
@@ -17,8 +19,10 @@ export const ContactList = () => {
       bgOnClick={closeOverlay}
       className="items-center justify-center"
       bgEffects={BgEffects.SHADING}
+      contentClassName={animations.slideTop}
+      delay={AnimationsTimingKeys.SHORT}
     >
-      <div className="flex flex-col gap-5 rounded-xl bg-black-400 pb-3 pl-5 pr-5 pt-5 text-white">
+      <Widget className="gap-5 pb-3 pl-5 pr-1 pt-5">
         <span>Contacts</span>
         <Input
           inputStyleType={InputStyleType.MENU_WIDGET}
@@ -35,7 +39,7 @@ export const ContactList = () => {
           <Contact />
           <Contact />
         </div>
-        <div className="flex h-full w-full justify-between gap-4">
+        <div className="flex h-full w-full justify-between gap-4 pr-4">
           <Button buttonStyleType={ButtonStyleType.WIDGET}>Add contact</Button>
           <Button
             buttonStyleType={ButtonStyleType.WIDGET}
@@ -44,7 +48,7 @@ export const ContactList = () => {
             Close
           </Button>
         </div>
-      </div>
+      </Widget>
     </PositionElementAbsolutely>
   );
 };
