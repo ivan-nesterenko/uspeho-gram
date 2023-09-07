@@ -4,9 +4,11 @@ import {
   Input,
   InputStyleType,
   PositionElementAbsolutely,
+  Widget,
   overlayContext,
 } from "gram/shared";
 import { BgEffects } from "gram/shared/components/absolute-positioning-utile";
+import { AnimationsTimingKeys, animations } from "gram/utils";
 import { type FC, useContext } from "react";
 
 type CommunityWidgetProps = {
@@ -43,8 +45,10 @@ export const CommunityWidget: FC<CommunityWidgetProps> = ({
       bgOnClick={closeOverlay}
       className="items-center justify-center"
       bgEffects={BgEffects.SHADING}
+      contentClassName={animations.slideRight}
+      delay={AnimationsTimingKeys.SHORT}
     >
-      <div className="flex flex-col gap-5 rounded-xl bg-black-400 pb-3 pl-5 pr-5 pt-5">
+      <Widget className="gap-5 pb-3 pl-5 pr-5 pt-5">
         <div className="flex h-fit w-full items-center gap-5">
           <div className="rounded-full bg-orange-400 p-10" />
           <Input
@@ -69,7 +73,7 @@ export const CommunityWidget: FC<CommunityWidgetProps> = ({
             {buttons.continue}
           </Button>
         </div>
-      </div>
+      </Widget>
     </PositionElementAbsolutely>
   );
 };
