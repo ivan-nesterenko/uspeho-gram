@@ -11,7 +11,7 @@ export const Folder: FC<FolderProps> = ({ name, maxNanmeLength = 12 }) => {
   return (
     <Button buttonStyleType={ButtonStyleType.GROUP}>
       <FolderIcon />
-      <span className="w-full">{name}</span>
+      <span className="w-full text-black-200">{name}</span>
     </Button>
   );
 };

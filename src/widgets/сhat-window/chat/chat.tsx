@@ -13,7 +13,7 @@ export const Chat: FC = () => {
         <div className="flex h-fit w-full  justify-between overflow-hidden text-ellipsis whitespace-nowrap text-black-200">
           <div>
             <span className="text-blue-500">Ivan: </span>
-            <span>asdadas</span>
+            <span className="text-black-200">asdadas</span>
           </div>
           <MessageCount count={209} />
         </div>
