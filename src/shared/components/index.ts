@@ -7,3 +7,4 @@ export {
   BgEffects,
 } from "./absolute-positioning-utile";
 export { Input, InputStyleType } from "./input";
+export { Widget } from "./widget";
