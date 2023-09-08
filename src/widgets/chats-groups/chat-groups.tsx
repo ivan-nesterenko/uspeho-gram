@@ -9,20 +9,20 @@ import { Folder } from "./folder";
 import { Menu } from "./menu";
 import { useContext, type FC } from "react";
 import { Edit } from "./edit";
-
+import { useTranslation } from "react-i18next";
 export const ChatGroups: FC = () => {
   const { openOverlay } = useContext(overlayContext);
+  const { t } = useTranslation("translation");
   return (
     <div className="flex h-full flex-col  bg-black-600">
       <Menu />
-
       <Button buttonStyleType={ButtonStyleType.GROUP} className="relative">
         <MessagesIcon />
         <MessageCount
           count={9}
           className="absolute right-2 top-3 h-[1.6rem] border-2 border-black bg-blue-600"
         />
-        All chats
+        {t("chatGroups.chats")}
       </Button>
       <Folder name="Programing" />
       <Button
@@ -30,7 +30,7 @@ export const ChatGroups: FC = () => {
         onClick={() => openOverlay(<Edit />)}
       >
         <GroupSettingsIcon />
-        Edit
+        {t("chatGroups.editFrolders.name")}
       </Button>
     </div>
   );

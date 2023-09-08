@@ -12,10 +12,12 @@ import { ArrowIcon, CallIcon, ContactsIcon, EmailIcon } from "public/svgs";
 import { useContext } from "react";
 import { EditWidget, EditWidgetType } from "./edit-widget";
 import { animations, AnimationsTimingKeys } from "gram/utils";
+import { useTranslation } from "react-i18next";
 
 export const Account = () => {
   const { closeOverlay, openOverlay, closeAllOverlays } =
     useContext(overlayContext);
+  const { t } = useTranslation("translation");
   return (
     <PositionElementAbsolutely
       className="justify-center"
@@ -30,7 +32,7 @@ export const Account = () => {
             <Button className="p-2" onClick={closeOverlay}>
               <ArrowIcon />
             </Button>
-            <span>Info</span>
+            <span>{t("menu.settings.account.widget")}</span>
           </div>
           <Button
             className="h-fit p-2 text-3xl text-black-200 hover:text-white hover:opacity-80"
@@ -59,7 +61,7 @@ export const Account = () => {
           >
             <div className="flex items-center gap-5">
               <ContactsIcon />
-              Name
+              {t("menu.settings.account.userName.name")}
             </div>
             <span className="text-blue-600">Ваня Нестеренко</span>
           </Button>
@@ -69,7 +71,7 @@ export const Account = () => {
           >
             <div className="flex items-center gap-5">
               <CallIcon />
-              Phone number
+              {t("menu.settings.account.userPhone")}
             </div>
             <span className="text-blue-600">+380 99 377 42 78</span>
           </Button>
@@ -82,7 +84,7 @@ export const Account = () => {
           >
             <div className="flex items-center gap-5">
               <EmailIcon />
-              Username
+              {t("menu.settings.account.username")}
             </div>
             <span className="text-blue-600">@DinGo42</span>
           </Button>

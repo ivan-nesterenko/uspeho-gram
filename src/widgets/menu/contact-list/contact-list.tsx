@@ -11,9 +11,11 @@ import { BgEffects } from "gram/shared/components/absolute-positioning-utile";
 import { useContext } from "react";
 import { Contact } from "./contact";
 import { animations, AnimationsTimingKeys } from "gram/utils";
+import { useTranslation } from "react-i18next";
 
 export const ContactList = () => {
   const { closeOverlay } = useContext(overlayContext);
+  const { t } = useTranslation("translation");
   return (
     <PositionElementAbsolutely
       bgOnClick={closeOverlay}
@@ -23,7 +25,7 @@ export const ContactList = () => {
       delay={AnimationsTimingKeys.SHORT}
     >
       <Widget className="gap-5 pb-3 pl-5 pr-1 pt-5">
-        <span>Contacts</span>
+        <span>{t("menu.contacts.name")}</span>
         <Input
           inputStyleType={InputStyleType.MENU_WIDGET}
           placeholder="Search"
@@ -40,12 +42,14 @@ export const ContactList = () => {
           <Contact />
         </div>
         <div className="flex h-full w-full justify-between gap-4 pr-4">
-          <Button buttonStyleType={ButtonStyleType.WIDGET}>Add contact</Button>
+          <Button buttonStyleType={ButtonStyleType.WIDGET}>
+            {t("menu.contacts.add")}
+          </Button>
           <Button
             buttonStyleType={ButtonStyleType.WIDGET}
             onClick={closeOverlay}
           >
-            Close
+            {t("menu.contacts.close")}
           </Button>
         </div>
       </Widget>

@@ -1,0 +1,40 @@
+{
+  "chatGroups": {
+    "chats": "All chats",
+    "editFrolders": {
+      "name": "Edit",
+      "widget": "Folders",
+      "widgetMessage": "Create folders for different groups of chats and quickly switch between them.",
+      "foldersList": "My folders",
+      "addNewFolder": "Create new folder"
+    }
+  },
+  "menu": {
+    "group": "New Group",
+    "channel": "New Channel",
+    "contacts": {
+      "name": "Contacts",
+      "add": "Add contact",
+      "close": "Close"
+    },
+    "saved": "Saved Messages",
+    "settings": {
+      "name": "Settings",
+      "account": {
+        "chat": "Chat settings",
+        "name": "My account",
+        "widget": "Info",
+        "userName": {
+          "name": "Name",
+          "widget": "Edit your name"
+        },
+        "userPhone": "Phone number",
+        "username": "Username"
+      },
+      "chat": "Chat settings",
+      "folders": "Folders",
+      "language": "Language"
+    },
+    "themeMode": "Night Mode"
+  }
+}

@@ -8,7 +8,7 @@ type HeaderProps = {
 
 export const Header: FC<HeaderProps> = ({ chanel, subs }) => (
   <header className="flex h-fit w-full items-end justify-between bg-black-400 pl-4">
-    <div className="flex w-fit flex-col justify-between pt-4">
+    <div className="flex w-fit flex-col justify-between pt-1">
       <span>Wоrk.ua Нові вакансії</span>
       <span className="text-black-200">bot</span>
     </div>

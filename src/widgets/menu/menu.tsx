@@ -19,9 +19,11 @@ import { BgEffects } from "gram/shared/components/absolute-positioning-utile";
 import { ContactList } from "./contact-list";
 import { Settings } from "./settings";
 import { animations } from "gram/utils";
+import { useTranslation } from "react-i18next";
 
 export const Menu = () => {
   const { openOverlay, closeOverlay } = useContext(overlayContext);
+  const { t } = useTranslation("translation");
 
   return (
     <PositionElementAbsolutely
@@ -40,7 +42,7 @@ export const Menu = () => {
             }}
           >
             <GroupIcon />
-            New Group
+            {t("menu.group")}
           </Button>
           <Button
             buttonStyleType={ButtonStyleType.MENU}
@@ -50,7 +52,7 @@ export const Menu = () => {
             }}
           >
             <MegaphoneIcon />
-            New Channel
+            {t("menu.channel")}
           </Button>
           <Button
             buttonStyleType={ButtonStyleType.MENU}
@@ -60,11 +62,11 @@ export const Menu = () => {
             }}
           >
             <ContactsIcon />
-            Contacts
+            {t("menu.contacts.name")}
           </Button>
           <Button buttonStyleType={ButtonStyleType.MENU}>
             <BookmarkIcon />
-            Saved Messages
+            {t("menu.saved")}
           </Button>
           <Button
             buttonStyleType={ButtonStyleType.MENU}
@@ -74,12 +76,12 @@ export const Menu = () => {
             }}
           >
             <SettingsIcon />
-            Settings
+            {t("menu.settings.name")}
           </Button>
           <Button buttonStyleType={ButtonStyleType.MENU} className="gap-16">
             <div className="flex gap-5">
               <MoonIcon />
-              Night Mode
+              {t("menu.themeMode")}
             </div>
             <div className="h-full w-16 bg-white">ads</div>
           </Button>

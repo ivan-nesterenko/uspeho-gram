@@ -10,9 +10,11 @@ import { FilesICon } from "public/svgs";
 import { useContext } from "react";
 import { Folder } from "./folder";
 import { AnimationsTimingKeys, animations } from "gram/utils";
+import { useTranslation } from "react-i18next";
 
 export const Edit = () => {
   const { closeOverlay, closeAllOverlays } = useContext(overlayContext);
+  const { t } = useTranslation("translation");
 
   return (
     <PositionElementAbsolutely
@@ -36,12 +38,13 @@ export const Edit = () => {
         <div className="flex w-full flex-col items-center gap-5 bg-black-350 pb-4 pt-4 text-center">
           <FilesICon />
           <span className="text-black-200">
-            Create folders for different groups of chats and quickly switch
-            between them.
+            {t("chatGroups.editFrolders.widgetMessage")}
           </span>
         </div>
         <div className="flex w-full flex-col">
-          <span className="p-4 text-blue-600">My folders</span>
+          <span className="p-4 text-blue-600">
+            {t("chatGroups.editFrolders.foldersList")}
+          </span>
           <div className="h-fit max-h-60 w-full overflow-y-auto">
             <Folder />
             <Folder />
@@ -55,7 +58,9 @@ export const Edit = () => {
           <div className="relative flex h-7 w-7 items-center justify-center rounded-full bg-[#5288C1]">
             <span className="absolute -top-[0.45rem] text-3xl">+</span>
           </div>
-          <span className="text-blue-600">Create new folder</span>
+          <span className="text-blue-600">
+            {t("chatGroups.editFrolders.addNewFolder")}
+          </span>
         </Button>
       </Widget>
     </PositionElementAbsolutely>
