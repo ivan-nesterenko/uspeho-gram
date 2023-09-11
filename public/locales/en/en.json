@@ -1,4 +1,30 @@
 {
+  "channel": {
+    "name": "Channel name",
+    "newChannelDescription": "Description (optional)",
+    "create": "Create",
+    "leave": "Cancel"
+  },
+  "group": {
+    "name": "Group name",
+    "create": "Next",
+    "leave": "Cancel"
+  },
+  "buttons": {
+    "save": "Save",
+    "newGroupe": {
+      "next": "Next"
+    },
+    "leave": "Cancel",
+    "leaveChannel": "leave channel"
+  },
+  "inputs": {
+    "search": "search",
+    "correspondence": "Write a message...",
+    "editFirstName": "First name",
+    "editLastName": "Last name",
+    "editUsername": "@username"
+  },
   "chatGroups": {
     "chats": "All chats",
     "editFrolders": {

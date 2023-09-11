@@ -1,0 +1,66 @@
+{
+  "channel": {
+    "name": "Назва каналу",
+    "newChannelDescription": "Опис (необов'язково)",
+    "create": "Створити",
+    "leave": "Скасувати"
+  },
+  "group": {
+    "name": "Назва групи",
+    "create": "Далі",
+    "leave": "Скасувати"
+  },
+  "buttons": {
+    "save": "Зберегти",
+    "newGroupe": {
+      "next": "Далі"
+    },
+    "leave": "Скасувати",
+    "leaveChannel": "Покинути канал"
+  },
+  "inputs": {
+    "search": "Пошук",
+    "correspondence": "Напишіть повідомлення...",
+    "editFirstName": "Ім'я",
+    "editLastName": "Прізвище",
+    "editUsername": "@Ім'я_користувача"
+  },
+  "chatGroups": {
+    "chats": "Усі чати",
+    "editFrolders": {
+      "name": "Редагувати",
+      "widget": "Папки",
+      "widgetMessage": "Створіть папки для різних груп чатів та швидко перемикайтеся між ними.",
+      "foldersList": "Мої папки",
+      "addNewFolder": "Створити нову папку"
+    }
+  },
+  "menu": {
+    "group": "Нова група",
+    "channel": "Новий канал",
+    "contacts": {
+      "name": "Контакти",
+      "add": "Додати контакт",
+      "close": "Закрити"
+    },
+    "saved": "Збережені повідомлення",
+    "settings": {
+      "name": "Налаштування",
+      "account": {
+        "chat": "Налаштування чату",
+        "name": "Мій обліковий запис",
+        "widget": "Інформація",
+        "userName": {
+          "name": "Ім'я",
+          "widget": "Редагувати ваше ім'я"
+        },
+        "userPhone": "Номер телефону",
+        "username": "Ім'я користувача"
+      },
+      "chat": "Налаштування чату",
+      "folders": "Папки",
+      "language": "Мова"
+    },
+    "themeMode": "Нічний режим"
+  }
+}
