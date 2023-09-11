@@ -42,6 +42,10 @@ export default {
         s: "0.72rem",
       },
     },
+    screens: {
+      phoneS: "375px",
+      phoneM: "425px",
+    },
     animation: {
       show: "show .5s ease-in-out",
       fade: "fade .3s ease-in-out",
