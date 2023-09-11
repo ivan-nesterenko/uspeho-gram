@@ -1,1 +1,1 @@
-export { CommunityWidget, CommunityWidgetType } from "./widget";
+export { FormWidget } from "./form-widget";
