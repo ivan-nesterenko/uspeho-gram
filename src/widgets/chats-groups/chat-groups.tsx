@@ -1,17 +1,12 @@
-import {
-  Button,
-  ButtonStyleType,
-  MessageCount,
-  overlayContext,
-} from "gram/shared";
+import { Button, ButtonStyleType, MessageCount, useOverlay } from "gram/shared";
 import { GroupSettingsIcon, MessagesIcon } from "public/svgs";
 import { Folder } from "./folder";
 import { Menu } from "./menu";
-import { useContext, type FC } from "react";
+import { type FC } from "react";
 import { Edit } from "./edit";
 import { useTranslation } from "react-i18next";
 export const ChatGroups: FC = () => {
-  const { openOverlay } = useContext(overlayContext);
+  const { openOverlay } = useOverlay();
   const { t } = useTranslation("translation");
   return (
     <div className="flex h-full flex-col  bg-black-600">

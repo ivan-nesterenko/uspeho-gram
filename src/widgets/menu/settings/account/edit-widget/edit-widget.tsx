@@ -6,85 +6,63 @@ import {
   InputStyleType,
   PositionElementAbsolutely,
   Widget,
-  overlayContext,
+  useOptionalStyle,
+  useOverlay,
 } from "gram/shared";
 import { animations, AnimationsTimingKeys } from "gram/utils";
-import { useState, type FC, useContext } from "react";
+import { type FC } from "react";
+import { useTranslation } from "react-i18next";
 
-export const EditWidgetType = {
-  name: {
-    text: "Edit your name",
-    placeholder_one: "First name",
-    placeholder_two: "Last name",
-  },
-  username: {
-    text: "Username",
-    placeholder_one: "@username",
-  },
-};
+export enum EditWidgetType {
+  NAME = "name",
+  USERNAME = "username",
+}
 
 type EditWidgetProps = {
-  type?: {
-    text: string;
-    placeholder_one: string;
-    placeholder_two?: string;
-  };
+  widgetType: EditWidgetType;
 };
-export const EditWidget: FC<EditWidgetProps> = ({ type }) => {
-  const [selected, setSelected] = useState<boolean | null>(null);
-  const { closeOverlay } = useContext(overlayContext);
+export const EditWidget: FC<EditWidgetProps> = ({ widgetType }) => {
+  const { closeOverlay } = useOverlay();
+  const { t } = useTranslation("translation");
+  const { className, disableStyle } = useOptionalStyle({
+    style: animations.fade,
+    timing: AnimationsTimingKeys.SHORT,
+    onDisable: closeOverlay,
+  });
   return (
     <PositionElementAbsolutely
       bgEffects={BgEffects.SHADING}
       className="items-center justify-center"
-      bgOnClick={closeOverlay}
-      contentClassName={animations.fade}
-      delay={AnimationsTimingKeys.SHORT}
+      bgOnClick={disableStyle}
     >
-      <Widget className="gap-5 p-6">
-        <span className="text-xl">{type?.text}</span>
-        <div className="relative">
-          <span
-            className={`absolute -top-4 text-s text-black-200  ${
-              selected && selected !== null ? "text-blue-600" : "text-black-200"
-            }`}
-          >
-            {type?.placeholder_one}
-          </span>
+      <Widget className="gap-5 p-6" optionalStyles={className}>
+        <span className="text-xl">
+          {widgetType === EditWidgetType.NAME
+            ? t("menu.settings.account.userName.widget")
+            : t("menu.settings.account.username")}
+        </span>
+        <Input
+          value={"Ваня"}
+          inputStyleType={InputStyleType.MENU_WIDGET}
+          placeholder={t("inputs.editFirstName")}
+        />
+        {widgetType === EditWidgetType.NAME && (
           <Input
-            onClick={() => setSelected(true)}
-            value={"Ваня"}
+            value={"Нестеренко"}
             inputStyleType={InputStyleType.MENU_WIDGET}
-            placeholder={type?.placeholder_one}
+            placeholder={t("inputs.editLastName")}
           />
-        </div>
-        {type?.placeholder_two && (
-          <div className="relative">
-            <span
-              className={`absolute -top-4 text-s  ${
-                !selected && selected !== null
-                  ? "text-blue-600"
-                  : "text-black-200"
-              }`}
-            >
-              {type?.placeholder_two}
-            </span>
-            <Input
-              onClick={() => setSelected(false)}
-              value={"Нестеренко"}
-              inputStyleType={InputStyleType.MENU_WIDGET}
-              placeholder={type.placeholder_two}
-            />
-          </div>
         )}
         <div className="flex justify-end">
           <Button
             buttonStyleType={ButtonStyleType.WIDGET}
-            onClick={closeOverlay}
+            onClick={disableStyle}
           >
-            Cancel
+            {t("buttons.leave")}
           </Button>
-          <Button buttonStyleType={ButtonStyleType.WIDGET}>Save</Button>
+          <Button buttonStyleType={ButtonStyleType.WIDGET}>
+            {t("buttons.save")}
+          </Button>
         </div>
       </Widget>
     </PositionElementAbsolutely>

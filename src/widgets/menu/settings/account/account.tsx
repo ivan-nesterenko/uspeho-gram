@@ -6,30 +6,32 @@ import {
   InputStyleType,
   PositionElementAbsolutely,
   Widget,
-  overlayContext,
+  useOptionalStyle,
+  useOverlay,
 } from "gram/shared";
 import { ArrowIcon, CallIcon, ContactsIcon, EmailIcon } from "public/svgs";
-import { useContext } from "react";
 import { EditWidget, EditWidgetType } from "./edit-widget";
 import { animations, AnimationsTimingKeys } from "gram/utils";
 import { useTranslation } from "react-i18next";
 
 export const Account = () => {
-  const { closeOverlay, openOverlay, closeAllOverlays } =
-    useContext(overlayContext);
+  const { closeOverlay, openOverlay, closeAllOverlays } = useOverlay();
   const { t } = useTranslation("translation");
+  const { className, disableStyle } = useOptionalStyle({
+    style: animations.slideRight,
+    timing: AnimationsTimingKeys.SHORT,
+    onDisable: closeOverlay,
+  });
   return (
     <PositionElementAbsolutely
-      className="justify-center"
+      className="items-center justify-center"
       bgEffects={BgEffects.SHADING}
-      bgOnClick={closeOverlay}
-      contentClassName={animations.slideRight}
-      delay={AnimationsTimingKeys.SHORT}
+      bgOnClick={disableStyle}
     >
-      <Widget className="mt-20">
+      <Widget optionalStyles={className}>
         <div className="flex w-full items-center justify-between p-4 text-xl">
           <div className="flex items-center gap-5">
-            <Button className="p-2" onClick={closeOverlay}>
+            <Button className="p-2" onClick={disableStyle}>
               <ArrowIcon />
             </Button>
             <span>{t("menu.settings.account.widget")}</span>
@@ -56,12 +58,12 @@ export const Account = () => {
             buttonStyleType={ButtonStyleType.MENU}
             className="justify-between"
             onClick={() => {
-              openOverlay(<EditWidget type={EditWidgetType.name} />);
+              openOverlay(<EditWidget widgetType={EditWidgetType.NAME} />);
             }}
           >
-            <div className="flex items-center gap-5">
+            <div className="max-phoneM:gap-2 flex items-center gap-5">
               <ContactsIcon />
-              {t("menu.settings.account.userName.name")}
+              <span>{t("menu.settings.account.userName.name")}</span>
             </div>
             <span className="text-blue-600">Ваня Нестеренко</span>
           </Button>
@@ -69,22 +71,24 @@ export const Account = () => {
             buttonStyleType={ButtonStyleType.MENU}
             className="justify-between"
           >
-            <div className="flex items-center gap-5">
+            <div className="max-phoneM:gap-2 flex items-center gap-5">
               <CallIcon />
-              {t("menu.settings.account.userPhone")}
+              <span>{t("menu.settings.account.userPhone")}</span>
             </div>
-            <span className="text-blue-600">+380 99 377 42 78</span>
+            <span className="min-w-[7.3rem] overflow-hidden text-blue-600">
+              +380 99 377 42 78
+            </span>
           </Button>
           <Button
             buttonStyleType={ButtonStyleType.MENU}
             className="justify-between"
             onClick={() => {
-              openOverlay(<EditWidget type={EditWidgetType.username} />);
+              openOverlay(<EditWidget widgetType={EditWidgetType.USERNAME} />);
             }}
           >
-            <div className="flex items-center gap-5">
+            <div className="max-phoneM:gap-2 flex items-center gap-5">
               <EmailIcon />
-              {t("menu.settings.account.username")}
+              <span>{t("menu.settings.account.username")}</span>
             </div>
             <span className="text-blue-600">@DinGo42</span>
           </Button>

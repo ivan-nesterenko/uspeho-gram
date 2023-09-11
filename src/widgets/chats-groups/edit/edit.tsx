@@ -4,29 +4,32 @@ import {
   ButtonStyleType,
   PositionElementAbsolutely,
   Widget,
-  overlayContext,
+  useOptionalStyle,
+  useOverlay,
 } from "gram/shared";
 import { FilesICon } from "public/svgs";
-import { useContext } from "react";
 import { Folder } from "./folder";
 import { AnimationsTimingKeys, animations } from "gram/utils";
 import { useTranslation } from "react-i18next";
 
 export const Edit = () => {
-  const { closeOverlay, closeAllOverlays } = useContext(overlayContext);
+  const { closeOverlay, closeAllOverlays } = useOverlay();
   const { t } = useTranslation("translation");
-
+  const { className, disableStyle } = useOptionalStyle({
+    style: animations.fade,
+    timing: AnimationsTimingKeys.SHORT,
+    onDisable: closeOverlay,
+  });
   return (
     <PositionElementAbsolutely
       bgEffects={BgEffects.SHADING}
       className="justify-center"
-      bgOnClick={closeOverlay}
-      contentClassName={animations.fade}
-      delay={AnimationsTimingKeys.SHORT}
+      bgOnClick={disableStyle}
+      customElemPossitionStyles="top-20"
     >
-      <Widget className="mt-20">
+      <Widget optionalStyles={className}>
         <div className="bg flex w-full items-center justify-between pb-1 pl-4 pr-2">
-          <span>Folders</span>
+          <span>{t("chatGroups.editFrolders.widget")}</span>
           <Button
             className="h-fit p-2 text-3xl text-black-200 hover:text-white hover:opacity-80"
             onClick={closeAllOverlays}

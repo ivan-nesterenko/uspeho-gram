@@ -2,7 +2,8 @@ import {
   Button,
   ButtonStyleType,
   PositionElementAbsolutely,
-  overlayContext,
+  useOptionalStyle,
+  useOverlay,
 } from "gram/shared";
 import {
   BookmarkIcon,
@@ -12,33 +13,42 @@ import {
   MoonIcon,
   SettingsIcon,
 } from "public/svgs";
-import { useContext } from "react";
 import { UserProfile } from "./user-profile";
-import { CommunityWidget, CommunityWidgetType } from "./widget";
 import { BgEffects } from "gram/shared/components/absolute-positioning-utile";
 import { ContactList } from "./contact-list";
 import { Settings } from "./settings";
-import { animations } from "gram/utils";
 import { useTranslation } from "react-i18next";
+import { AnimationsTimingKeys, animations } from "gram/utils";
+import { twJoin } from "tailwind-merge";
+import { FormWidget, WidgetType } from "./widget/form-widget";
 
 export const Menu = () => {
-  const { openOverlay, closeOverlay } = useContext(overlayContext);
+  const { openOverlay, closeOverlay } = useOverlay();
   const { t } = useTranslation("translation");
-
+  const { className, disableStyle } = useOptionalStyle({
+    style: animations.slide,
+    timing: AnimationsTimingKeys.MEDIUM,
+    onDisable: closeOverlay,
+  });
   return (
     <PositionElementAbsolutely
-      bgOnClick={closeOverlay}
+      bgOnClick={disableStyle}
       bgEffects={BgEffects.SHADING}
-      contentClassName={animations.slide}
+      customElemPossitionStyles="p-0"
     >
-      <div className={`flex h-full w-fit flex-col gap-4 bg-black-400 pt-5`}>
+      <div
+        className={twJoin(
+          className,
+          "flex h-screen w-fit flex-col gap-4 bg-black-400 pt-5",
+        )}
+      >
         <UserProfile />
         <div className="w-fit border-t-2 border-black-600">
           <Button
             buttonStyleType={ButtonStyleType.MENU}
             onClick={() => {
               closeOverlay();
-              openOverlay(<CommunityWidget {...CommunityWidgetType.group} />);
+              openOverlay(<FormWidget widgetType={WidgetType.GROUP} />);
             }}
           >
             <GroupIcon />
@@ -48,7 +58,7 @@ export const Menu = () => {
             buttonStyleType={ButtonStyleType.MENU}
             onClick={() => {
               closeOverlay();
-              openOverlay(<CommunityWidget {...CommunityWidgetType.channel} />);
+              openOverlay(<FormWidget widgetType={WidgetType.CHANNEL} />);
             }}
           >
             <MegaphoneIcon />

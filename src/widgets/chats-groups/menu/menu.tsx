@@ -1,10 +1,10 @@
-import { Button, ButtonStyleType, overlayContext } from "gram/shared";
+import { Button, ButtonStyleType, useOverlay } from "gram/shared";
 import { MenuIcon } from "public/svgs";
-import { useContext, type FC } from "react";
+import { type FC } from "react";
 import { Menu as MenuWindow } from "gram/widgets";
 
 export const Menu: FC = () => {
-  const { openOverlay } = useContext(overlayContext);
+  const { openOverlay } = useOverlay();
   return (
     <Button
       buttonStyleType={ButtonStyleType.GROUP}

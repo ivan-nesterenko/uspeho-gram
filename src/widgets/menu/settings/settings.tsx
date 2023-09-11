@@ -4,7 +4,8 @@ import {
   ButtonStyleType,
   PositionElementAbsolutely,
   Widget,
-  overlayContext,
+  useOptionalStyle,
+  useOverlay,
 } from "gram/shared";
 import {
   ContactsIcon,
@@ -12,25 +13,27 @@ import {
   MessageIcon,
   SettingsFolderIcon,
 } from "public/svgs";
-import { useContext } from "react";
 import { Account } from "./account";
 import { FolderEdit } from "gram/widgets";
 import { animations, AnimationsTimingKeys } from "gram/utils";
 import { useTranslation } from "react-i18next";
 
 export const Settings = () => {
-  const { closeOverlay, openOverlay, closeAllOverlays } =
-    useContext(overlayContext);
+  const { closeOverlay, openOverlay, closeAllOverlays } = useOverlay();
   const { t } = useTranslation("translation");
+  const { className, disableStyle } = useOptionalStyle({
+    style: animations.slideTop,
+    timing: AnimationsTimingKeys.SHORT,
+    onDisable: closeOverlay,
+  });
   return (
     <PositionElementAbsolutely
       className="justify-center"
       bgEffects={BgEffects.SHADING}
-      bgOnClick={closeOverlay}
-      contentClassName={animations.slideTop}
-      delay={AnimationsTimingKeys.SHORT}
+      bgOnClick={disableStyle}
+      customElemPossitionStyles="top-20"
     >
-      <Widget className="mt-20 gap-2 bg-black-300 pb-0">
+      <Widget className="gap-2 bg-black-300 pb-0" optionalStyles={className}>
         <div>
           <div className="flex w-full items-center justify-between rounded-md bg-black-400 pl-5 pr-2 text-xl">
             <span>{t("menu.settings.name")}</span>
@@ -42,7 +45,7 @@ export const Settings = () => {
               ×
             </Button>
           </div>
-          <div className="flex gap-5 bg-black-400 pb-4 pl-5">
+          <div className="pr- flex gap-5 bg-black-400 pb-4 pl-5 pr-8">
             <div className="rounded-full bg-orange-400 p-10" />
             <div className="flex flex-col gap-1">
               <span className="text-xl">Ваня Нестеренко</span>

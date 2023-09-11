@@ -1,34 +1,40 @@
 import {
-  overlayContext,
   PositionElementAbsolutely,
   Button,
   ButtonStyleType,
   Input,
   InputStyleType,
   Widget,
+  useOverlay,
+  useOptionalStyle,
 } from "gram/shared";
 import { BgEffects } from "gram/shared/components/absolute-positioning-utile";
-import { useContext } from "react";
 import { Contact } from "./contact";
 import { animations, AnimationsTimingKeys } from "gram/utils";
 import { useTranslation } from "react-i18next";
 
 export const ContactList = () => {
-  const { closeOverlay } = useContext(overlayContext);
+  const { closeOverlay } = useOverlay();
   const { t } = useTranslation("translation");
+  const { className, disableStyle } = useOptionalStyle({
+    style: animations.slideTop,
+    timing: AnimationsTimingKeys.SHORT,
+    onDisable: closeOverlay,
+  });
   return (
     <PositionElementAbsolutely
-      bgOnClick={closeOverlay}
+      bgOnClick={disableStyle}
       className="items-center justify-center"
       bgEffects={BgEffects.SHADING}
-      contentClassName={animations.slideTop}
-      delay={AnimationsTimingKeys.SHORT}
     >
-      <Widget className="gap-5 pb-3 pl-5 pr-1 pt-5">
+      <Widget
+        className={`gap-5 pb-3 pl-5 pr-1 pt-5`}
+        optionalStyles={className}
+      >
         <span>{t("menu.contacts.name")}</span>
         <Input
           inputStyleType={InputStyleType.MENU_WIDGET}
-          placeholder="Search"
+          placeholder={t("inputs.search")}
         />
         <div className="h-fit max-h-96 w-full items-center gap-5 overflow-y-auto">
           <Contact />
@@ -47,7 +53,7 @@ export const ContactList = () => {
           </Button>
           <Button
             buttonStyleType={ButtonStyleType.WIDGET}
-            onClick={closeOverlay}
+            onClick={disableStyle}
           >
             {t("menu.contacts.close")}
           </Button>
