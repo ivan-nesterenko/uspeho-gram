@@ -1,5 +1,4 @@
-import { AnimationsTimingKeys, animationsTimings } from "gram/utils";
-import { useState, type FC, type ReactNode } from "react";
+import { type FC, type ReactNode } from "react";
 import { twJoin } from "tailwind-merge";
 
 export enum BgEffects {
@@ -12,8 +11,7 @@ type PositionElementAbsolutelyProps = {
   className?: string;
   bgEffects?: BgEffects;
   bgOnClick?: () => void;
-  contentClassName?: ((isOpen: boolean) => string) | string;
-  delay?: AnimationsTimingKeys;
+  customElemPossitionStyles?: string;
 };
 
 export const PositionElementAbsolutely: FC<PositionElementAbsolutelyProps> = ({
@@ -21,31 +19,26 @@ export const PositionElementAbsolutely: FC<PositionElementAbsolutelyProps> = ({
   className,
   bgEffects = BgEffects.NONE,
   bgOnClick,
-  contentClassName,
-  delay = AnimationsTimingKeys.MEDIUM,
+  customElemPossitionStyles,
 }) => {
-  const [isOpen, setOpen] = useState(true);
   return (
     <div
-      className={`absolute left-0 top-0 flex h-screen w-screen overflow-hidden ${className} z-50`}
+      className={twJoin(
+        `absolute left-0 top-0 z-50 flex h-screen w-screen overflow-hidden`,
+        className,
+      )}
     >
       <div
         className={twJoin(
-          typeof contentClassName === "string"
-            ? contentClassName
-            : contentClassName?.(isOpen),
-          "z-50 transition-all",
-          animationsTimings[delay].className,
+          "relative z-50 h-fit w-fit p-1 transition-all",
+          customElemPossitionStyles,
         )}
       >
         {children}
       </div>
       <div
         className={`absolute h-full w-full ${bgEffects}`}
-        onClick={() => {
-          setOpen(false);
-          bgOnClick && setTimeout(bgOnClick, animationsTimings[delay].ms);
-        }}
+        onClick={bgOnClick}
       />
     </div>
   );
