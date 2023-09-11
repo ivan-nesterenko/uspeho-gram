@@ -7,7 +7,7 @@ import {
 } from "gram/shared";
 import { ErrorStyleType } from "gram/shared/components/input";
 import { EyeIcon, EyeOffIcon, LogoIcon } from "public/svgs";
-import { memo, useState } from "react";
+import { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 
 interface IFormInput {
@@ -17,7 +17,7 @@ interface IFormInput {
   password: string;
 }
 
-export const SignUpForm = memo(() => {
+export const SignUpForm = () => {
   const {
     register,
     handleSubmit,
@@ -41,7 +41,7 @@ export const SignUpForm = memo(() => {
           placeholder="boba"
           errorStyleType={ErrorStyleType.FORM}
           isError={!!errors.firstName}
-          inputMessage="first name"
+          inputMessage="test"
           inputStyleType={InputStyleType.FORM}
           {...register("firstName", {
             required: {
@@ -119,4 +119,4 @@ export const SignUpForm = memo(() => {
       </form>
     </Widget>
   );
-});
+};
