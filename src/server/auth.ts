@@ -9,6 +9,7 @@ import DiscordProvider from "next-auth/providers/discord";
 
 import { env } from "gram/env.mjs";
 import { prisma } from "gram/server/db";
+import Credentials from "next-auth/providers/credentials";
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -46,11 +47,36 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   },
+  pages: {
+    signIn: "/sign-in",
+  },
   adapter: PrismaAdapter(prisma),
   providers: [
     DiscordProvider({
       clientId: env.DISCORD_CLIENT_ID,
       clientSecret: env.DISCORD_CLIENT_SECRET,
+    }),
+
+    Credentials({
+      credentials: {
+        firstname: { label: "firstname", type: "text" },
+        lastname: { label: "lastname", type: "text" },
+        username: { label: "username", type: "text" },
+        email: {
+          label: "email",
+          type: "email",
+        },
+        password: { label: "password", type: "password" },
+      },
+      authorize: (credentials) => {
+        if (!credentials?.email || !credentials?.password) return null;
+        //запит на бек для перевірки
+        const { password, ...userWithoutPass } = credentials; // якщо пройшов перевірку і данні правильні, а якщо ні , то null
+        return {
+          id: String(Math.random() * 100),
+          ...userWithoutPass,
+        }; // юзер без пароля
+      },
     }),
     /**
      * ...add more providers here.

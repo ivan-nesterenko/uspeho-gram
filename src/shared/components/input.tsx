@@ -1,11 +1,15 @@
+import { EyeOffIcon, EyeIcon } from "public/svgs";
 import {
   type DetailedHTMLProps,
   type InputHTMLAttributes,
   type ReactNode,
   forwardRef,
   memo,
+  useState,
+  useRef,
 } from "react";
 import { twJoin } from "tailwind-merge";
+import { Button, ButtonStyleType } from "./button";
 
 export enum InputStyleType {
   CORRESPONDENCE = "bg-black-400 h-full w-full pl-2 text-white border-none",
@@ -18,9 +22,20 @@ export enum ErrorStyleType {
   FORM = "border-red-700",
   NONE = "",
 }
+{
+  /* <Button
+onClick={() => setShown((prev) => !prev)}
+buttonStyleType={ButtonStyleType.PASSWORD}
+className="absolute right-2 top-2"
+>
+{isShown ? <EyeOffIcon /> : <EyeIcon />}
+</Button> */
+}
 type InputProps = {
+  textDisplaySwitch?: boolean;
   inputStyleType?: InputStyleType;
   className?: string;
+  type?: string;
   children?: ReactNode;
   isError?: boolean;
   errorStyleType?: ErrorStyleType;
@@ -36,41 +51,58 @@ export const Input = memo(
         inputStyleType = InputStyleType.NONE,
         className,
         isError,
+        type,
         inputMessage,
         inputMessageClassName,
+        textDisplaySwitch,
         errorStyleType = ErrorStyleType.NONE,
         ...props
       },
       ref,
-    ) => (
-      <div className="relative w-full">
-        {inputMessage && (
-          <div
-            className={twJoin(
-              "opacity-1 relative left-3 top-[2px] h-[2px] w-fit bg-black-700 pl-2 pr-2 transition-opacity",
-            )}
-          >
-            <span
+    ) => {
+      const [isShown, setShown] = useState(false);
+      const refInputContainer = useRef<HTMLDivElement | null>(null);
+
+      return (
+        <div className="relative w-full" ref={refInputContainer}>
+          {inputMessage && (
+            <div
               className={twJoin(
-                inputMessageClassName,
-                "relative -top-[700%] text-sm text-black-200",
+                "opacity-1 relative left-3 top-[2px] h-[2px] w-fit bg-black-700 pl-2 pr-2 transition-opacity",
               )}
             >
-              {inputMessage}
-            </span>
-          </div>
-        )}
-        <input
-          ref={ref}
-          className={`${twJoin(
-            inputStyleType,
-            className,
-            isError && errorStyleType,
-          )} outline-none placeholder:text-gray-500`}
-          {...props}
-        />
-        {children}
-      </div>
-    ),
+              <span
+                className={twJoin(
+                  inputMessageClassName,
+                  "relative -top-[700%] text-sm text-black-200",
+                )}
+              >
+                {inputMessage}
+              </span>
+            </div>
+          )}
+          <input
+            ref={ref}
+            type={textDisplaySwitch ? (isShown ? type : "password") : type}
+            className={`${twJoin(
+              inputStyleType,
+              className,
+              isError && errorStyleType,
+            )} outline-none placeholder:text-gray-500`}
+            {...props}
+          />
+          {children}
+          {textDisplaySwitch && (
+            <Button
+              onClick={() => setShown((prev) => !prev)}
+              buttonStyleType={ButtonStyleType.PASSWORD}
+              className="absolute right-2 top-2"
+            >
+              {isShown ? <EyeOffIcon /> : <EyeIcon />}
+            </Button>
+          )}
+        </div>
+      );
+    },
   ),
 );

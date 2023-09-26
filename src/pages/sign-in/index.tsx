@@ -1,23 +1,23 @@
 import { PositionElementAbsolutely } from "gram/shared";
-import { SignUpForm } from "gram/widgets";
+import { SignInForm } from "gram/widgets";
 import Link from "next/link";
 
-const SignUp = () => {
+const SignIn = () => {
   return (
     <PositionElementAbsolutely
       className="items-center justify-center bg-black-700"
       customElemPossitionStyles="flex flex-col"
     >
-      <SignUpForm />
+      <SignInForm />
       <Link
-        href={"/sign-in"}
+        href={"/sign-up"}
         className={
           "rounded-md p-3 text-center text-purple-800 hover:bg-gray-800"
         }
       >
-        Вже є акаунт?
+        Створити акаунт
       </Link>
     </PositionElementAbsolutely>
   );
 };
-export default SignUp;
+export default SignIn;

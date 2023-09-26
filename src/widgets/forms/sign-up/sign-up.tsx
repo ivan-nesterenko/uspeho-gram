@@ -3,28 +3,37 @@ import {
   ButtonStyleType,
   Input,
   InputStyleType,
+  SIGN_UP_FORM_MESSAGES,
+  type SignUpSchema,
   Widget,
+  signUpSchema,
 } from "gram/shared";
 import { ErrorStyleType } from "gram/shared/components/input";
-import { EyeIcon, EyeOffIcon, LogoIcon } from "public/svgs";
-import { useState } from "react";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/router";
+import { LogoIcon } from "public/svgs";
 import { type SubmitHandler, useForm } from "react-hook-form";
-
-interface IFormInput {
-  firstName: string;
-  lastName: string;
-  username: string;
-  password: string;
-}
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export const SignUpForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IFormInput>();
-  const [isShown, setShown] = useState(false);
-  const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data);
+  } = useForm<SignUpSchema>({
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+    resolver: zodResolver(signUpSchema),
+  });
+  const router = useRouter();
+  const onSubmit: SubmitHandler<SignUpSchema> = async (data) => {
+    const res = await signIn("credentials", {
+      data,
+      redirect: false,
+    });
+    if (res && !res.error) await router.push("/");
+    else console.log(res, res?.error);
+  };
+
   return (
     <Widget className="w-96 items-center gap-10 bg-black-700">
       <LogoIcon />
@@ -38,19 +47,12 @@ export const SignUpForm = () => {
       >
         <Input
           type="text"
-          placeholder="boba"
+          placeholder={SIGN_UP_FORM_MESSAGES.FIRSTNAME_PLACEHOLDER}
           errorStyleType={ErrorStyleType.FORM}
           isError={!!errors.firstName}
           inputMessage="test"
           inputStyleType={InputStyleType.FORM}
-          {...register("firstName", {
-            required: {
-              value: true,
-              message: "You should write your first name",
-            },
-            maxLength: 15,
-            minLength: 2,
-          })}
+          {...register("firstName")}
         >
           <p className="text-red-700">{errors.firstName?.message}</p>
         </Input>
@@ -61,14 +63,7 @@ export const SignUpForm = () => {
           placeholder="Dudeovich"
           inputMessage="last name"
           inputStyleType={InputStyleType.FORM}
-          {...register("lastName", {
-            required: {
-              value: true,
-              message: "You should write your last name",
-            },
-            maxLength: 16,
-            minLength: 4,
-          })}
+          {...register("lastName")}
         >
           <p className="text-red-700">{errors.lastName?.message}</p>
         </Input>
@@ -79,40 +74,27 @@ export const SignUpForm = () => {
           inputMessage="@username"
           type="text"
           inputStyleType={InputStyleType.FORM}
-          {...register("username", {
-            required: false,
-            maxLength: 13,
-            minLength: 1,
-          })}
+          {...register("username")}
         />
-        <div className="relative flex items-start">
-          <Input
-            errorStyleType={ErrorStyleType.FORM}
-            isError={!!errors.password}
-            inputMessage="password"
-            placeholder="qwerty"
-            type={isShown ? "text" : "password"}
-            inputStyleType={InputStyleType.FORM}
-            {...register("password", {
-              required: {
-                message: ` Write the password as simply as possible, because I don't give a
-              fuck`,
-                value: true,
-              },
-              maxLength: 27,
-              minLength: 4,
-            })}
-          >
-            <p className="text-sm text-red-500">{errors.password?.message}</p>
-          </Input>
-          <Button
-            onClick={() => setShown((prev) => !prev)}
-            buttonStyleType={ButtonStyleType.PASSWORD}
-            className="absolute right-2 top-2"
-          >
-            {isShown ? <EyeOffIcon /> : <EyeIcon />}
-          </Button>
-        </div>
+        <Input
+          errorStyleType={ErrorStyleType.FORM}
+          isError={!!errors.password}
+          inputMessage="password"
+          textDisplaySwitch={true}
+          placeholder="qwerty"
+          type={"text"}
+          inputStyleType={InputStyleType.FORM}
+          {...register("password", {
+            required: {
+              message: `You have to come up with a password`,
+              value: true,
+            },
+            maxLength: 27,
+            minLength: 4,
+          })}
+        >
+          <p className="text-sm text-red-500">{errors.password?.message}</p>
+        </Input>
         <Button type="submit" buttonStyleType={ButtonStyleType.SUBMIT}>
           Submit
         </Button>
