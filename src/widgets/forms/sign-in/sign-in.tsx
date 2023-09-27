@@ -11,6 +11,9 @@ import { ErrorStyleType } from "gram/shared/components/input";
 import { LogoIcon } from "public/svgs";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useTranslation } from "react-i18next";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/router";
 
 export const SignInForm = () => {
   const {
@@ -21,12 +24,22 @@ export const SignInForm = () => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
     resolver: zodResolver(signInSchema),
   });
-  const onSubmit: SubmitHandler<SignInSchema> = (data) => console.log(data);
+  const { t } = useTranslation("translation");
+  const router = useRouter();
+
+  const onSubmit: SubmitHandler<SignInSchema> = async (data) => {
+    const res = await signIn("credentials", {
+      data,
+      redirect: false,
+    });
+    if (res && !res.error) await router.push("/");
+    else console.log(res, res?.error);
+  };
   return (
     <Widget className="w-96 items-center gap-10 bg-black-700">
       <LogoIcon />
       <span className="text-center text-4xl text-black-200">
-        Sign in to telegram
+       {t('forms.signIn.name')}
       </span>
       <form
         // eslint-disable-next-line @typescript-eslint/no-misused-promises
@@ -40,21 +53,10 @@ export const SignInForm = () => {
           inputMessage="@username"
           type="text"
           inputStyleType={InputStyleType.FORM}
-          {...register("username", {
-            required: {
-              message: "It's required field",
-              value: true,
-            },
-            maxLength: {
-              message: "Your username is to large",
-              value: 32,
-            },
-            minLength: {
-              message: "Write at least a symbol...",
-              value: 1,
-            },
-          })}
-        />
+          {...register("username")}
+        >
+          <p className="text-sm text-red-500">{errors.username?.message}</p>
+        </Input>
         <Input
           errorStyleType={ErrorStyleType.FORM}
           isError={!!errors.password}
@@ -63,19 +65,12 @@ export const SignInForm = () => {
           type={"text"}
           textDisplaySwitch={true}
           inputStyleType={InputStyleType.FORM}
-          {...register("password", {
-            required: {
-              message: `It's required field`,
-              value: true,
-            },
-            maxLength: 90,
-            minLength: 4,
-          })}
+          {...register("password")}
         >
           <p className="text-sm text-red-500">{errors.password?.message}</p>
         </Input>
         <Button type="submit" buttonStyleType={ButtonStyleType.SUBMIT}>
-          Submit
+          {t("buttons.submit")}
         </Button>
       </form>
     </Widget>

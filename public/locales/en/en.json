@@ -1,4 +1,48 @@
 {
+  "forms":{
+    "signUp": {
+      "hasAnAccount":"Already have an account?",
+      "name":"Sign up to Telegram",
+      "usernameRequired": "This field is required",
+      "usernamePlaceholder": "username_example",
+      "largeUsername": "Your username is too long",
+      "smallUsername": "Your username is too short",
+  
+      "firstNameRequired": "You must specify your first name",
+      "firstNamePlaceholder": "Boba",
+      "largeFirstName": "Sorry, your name is too long",
+      "smallFirstName": "Are you from the jungle?",
+  
+      "lastNameRequired": "You must specify your last name",
+      "lastNamePlaceholder": "Dudeovich",
+      "largeLastName": "Sorry, your last name is too long",
+      "smallLastName": "Sorry, but you need to fill in the last name field",
+  
+      "passwordRequired": "You must create a password",
+      "passwordPlaceholder": "qwerty",
+      "largePassword": "Your password is too long, shorten it",
+      "smallPassword": "Please write a longer password",
+  
+      "isLoading": "Checking your data",
+      "isError": "Your username is already in use, we can randomly create a unique one"
+    },
+    "signIn": {
+      "noAccount":"Create an account",
+      "name":"Sign in to Telegram",
+      "usernameRequired": "This field is required",
+      "usernamePlaceholder": "DinGo",
+      "largeUsername": "Your username is definitely shorter",
+      "smallUsername": "Write at least one character...",
+  
+      "passwordRequired": "This field is required",
+      "passwordPlaceholder":"qwerty",
+      "largePassword": "Your password is definitely not that long",
+      "smallPassword": "Your password is definitely longer",
+      
+      "isLoading": "Checking your data",
+      "isError": "Your username or password is incorrect"
+    }
+  },
   "channel": {
     "name": "Channel name",
     "newChannelDescription": "Description (optional)",
@@ -11,6 +55,7 @@
     "leave": "Cancel"
   },
   "buttons": {
+    "submit":"Next",
     "save": "Save",
     "newGroupe": {
       "next": "Next"

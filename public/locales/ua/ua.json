@@ -1,4 +1,47 @@
 {
+  "forms":{
+    "signUp":{
+      "hasAnAccount":"Вже є акаунт?",
+      "name":"Реєстрація до Telegram",
+      "usernameRequired": "Вам потрібно створити унікальне ім'я користувача",
+      "usernamePlaceholder": "username_example",
+      "largeUsername": "Ваше ім'я користувача занадто довге",
+      "smallUsername": "Ваше ім'я користувача занадто коротке",
+
+      "firstNameRequired": "Ви повинні вказати своє ім'я",
+      "firstNamePlaceholder": "Боба",
+      "largeFirstName": "Вибачте, ваше ім'я занадто довге",
+      "smallFirstName": "Ви вже вивчилися в джунглях?",
+
+      "lastNameRequired": "Ви повинні вказати своє прізвище",
+      "lastNamePlaceholder": "Дудович",
+      "largeLastName": "Вибачте, ваше прізвище занадто довге",
+      "smallLastName": "Вибачте, але вам потрібно заповнити поле з прізвищем",
+
+      "passwordRequired": "Ви повинні створити пароль",
+      "passwordPlaceholder": "qwerty",
+      "largePassword": "Ваш пароль занадто довгий, скоротіть його",
+      "smallPassword": "Будь ласка, створіть більш довгий пароль",
+
+      "isLoading": "Перевірка ваших даних",
+      "isError": "Ваше ім'я користувача вже використовується, ми можемо випадково створити унікальне"
+    },
+    "signIn":{
+      "noAccount":"Створити акаунт",
+      "name":"Вхід до Telegram",
+      "usernameRequired": "Це обов'язкове поле",
+      "usernamePlaceholder": "DinGo",
+      "largeUsername": "Ваше ім'я користувача точно менше",
+      "smallUsername": "Напишіть хоча б один символ...",
+  
+      "passwordRequired": "Це обов'язкове поле",
+      "largePassword": "Ваш пароль точно не такий довгий",
+      "smallPassword": "Ваш пароль точно довший",
+  
+      "isLoading": "Перевірка ваших даних",
+      "isError": "Ваше ім'я користувача або пароль некоректні"
+    }
+  },
   "channel": {
     "name": "Назва каналу",
     "newChannelDescription": "Опис (необов'язково)",
@@ -11,6 +54,7 @@
     "leave": "Скасувати"
   },
   "buttons": {
+    "submit":"Далі",
     "save": "Зберегти",
     "newGroupe": {
       "next": "Далі"

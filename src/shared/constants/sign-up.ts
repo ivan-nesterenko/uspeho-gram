@@ -1,23 +1,28 @@
+import i18n from "public/locales/i18n";
+
+
+
 export const SIGN_UP_FORM_MESSAGES = {
-  USERNAME_PLACEHOLDER: `username_example`,
-  LARGE_USERNAME: `Your username is to large`,
-  SMALL_USERNAME: `Your username is to short`,
+  USERNAME_REQIRED: i18n.t('forms.signUp.usernameRequired'),
+  USERNAME_PLACEHOLDER: i18n.t('forms.signUp.usernamePlaceholder'),
+  LARGE_USERNAME: i18n.t('forms.signUp.largeUsername'),
+  SMALL_USERNAME: i18n.t('forms.signUp.smallUsername'),
 
-  FIRSTNAME_REQIRED: `You should write your first name`,
-  FIRSTNAME_PLACEHOLDER: `Boba`,
-  LARGE_FIRSTNAME: `Sorry, your name is too long`,
-  SMALL_FIRSTNAME: `Are you from jungle?`,
+  FIRSTNAME_REQIRED: i18n.t('forms.signUp.firstNameRequired'),
+  FIRSTNAME_PLACEHOLDER: i18n.t('forms.signUp.firstNamePlaceholder'),
+  LARGE_FIRSTNAME: i18n.t('forms.signUp.largeFirstName'),
+  SMALL_FIRSTNAME: i18n.t('forms.signUp.smallFirstName'),
 
-  LASTNAME_REQIRED: `You should write your last name`,
-  LASTNAME_PLACEHOLDER: `Dudeovich`,
-  LARGE_LASTNAME: `Sorry, your last name is too long`,
-  SMALL_LASTNAME: `Sorry, but you need to fill in the last name field`,
+  LASTNAME_REQIRED: i18n.t('forms.signUp.lastNameRequired'),
+  LASTNAME_PLACEHOLDER: i18n.t('forms.signUp.lastNamePlaceholder'),
+  LARGE_LASTNAME: i18n.t('forms.signUp.largeLastName'),
+  SMALL_LASTNAME: i18n.t('forms.signUp.smallLastName'),
 
-  PASSWORD_REQIRED: `You have to come up with a password`,
-  PASSWORD_PLACEHOLDER: `qwerty`,
-  LARGE_PASSWORD: `Your password is too long shorten it`,
-  SMALL_PASSWORD: `Please write a longer password`,
+  PASSWORD_REQIRED: i18n.t('forms.signUp.passwordRequired'),
+  PASSWORD_PLACEHOLDER: i18n.t('forms.signUp.passwordPlaceholder'),
+  LARGE_PASSWORD: i18n.t('forms.signUp.largePassword'),
+  SMALL_PASSWORD: i18n.t('forms.signUp.smallPassword'),
 
-  IS_LOADING: `Checking your data`,
-  IS_ERROR: `Your username already in use, we can randomly create uniuqe`,
+  IS_LOADING: i18n.t('forms.signUp.isLoading'),
+  IS_ERROR: i18n.t('forms.signUp.isError'),
 } as const;

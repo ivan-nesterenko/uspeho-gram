@@ -94,11 +94,12 @@ export const Input = memo(
           {children}
           {textDisplaySwitch && (
             <Button
+              type="button"
               onClick={() => setShown((prev) => !prev)}
               buttonStyleType={ButtonStyleType.PASSWORD}
               className="absolute right-2 top-2"
             >
-              {isShown ? <EyeOffIcon /> : <EyeIcon />}
+              {isShown ? <EyeIcon /> : <EyeOffIcon />}
             </Button>
           )}
         </div>
