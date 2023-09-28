@@ -1,17 +1,49 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { signIn, signOut, useSession } from "next-auth/react";
 
 import { api } from "gram/utils/api";
 import { ChatGroups, ChatWindow, Correspondence } from "gram/widgets";
 import Layout from "./layout";
+import { Button, ButtonStyleType } from "gram/shared";
+import { useRef, useState, useCallback, useEffect } from "react";
 
 export default function Home() {
   // const hello = api.example.hello.useQuery({ text: "from tRPC" });
+  const [isResizing, setIsResizing] = useState(false);
+  const [sidebarWidth, setSidebarWidth] = useState(4);
 
+  const startResizing = useCallback(() => {
+    setIsResizing(true);
+  }, []);
+
+  const stopResizing = useCallback(() => {
+    setIsResizing(false);
+  }, []);
+  
+  const resize = useCallback(
+    (mouseMoveEvent: { clientX: number; }) => {
+      if (isResizing) {
+        const result = (mouseMoveEvent.clientX/window.outerWidth)*100
+        setSidebarWidth(
+          result>80?80:result<16?1:result
+
+        );
+      }
+    },
+    [isResizing],
+  );
+  useEffect(() => {
+    window.addEventListener("mousemove", resize);
+    window.addEventListener("mouseup", stopResizing);
+  })
+  console.log(sidebarWidth)
   return (
     <Layout>
       <ChatGroups />
-      <ChatWindow />
-      <Correspondence />
+      <ChatWindow width={sidebarWidth} />
+      <Button onPointerDown={startResizing} buttonStyleType={ButtonStyleType.NONE} className="h-full w-3 bg-black-400"/>
+      <Correspondence width={100-sidebarWidth} />
     </Layout>
   );
 }
