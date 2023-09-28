@@ -25,14 +25,14 @@ export const SignUpForm = () => {
   });
   const { t } = useTranslation("translation");
   const onSubmit: SubmitHandler<SignUpSchema> = (data) => {
-    console.log(data)
+    console.log(data);
   };
 
   return (
     <Widget className="w-96 items-center gap-10 bg-black-700">
       <LogoIcon />
       <span className="text-center text-4xl text-black-200">
-        {t('forms.signUp.name')}
+        {t("forms.signUp.name")}
       </span>
       <form
         // eslint-disable-next-line @typescript-eslint/no-misused-promises
@@ -85,7 +85,7 @@ export const SignUpForm = () => {
           <p className="text-sm text-red-500">{errors.password?.message}</p>
         </Input>
         <Button type="submit" buttonStyleType={ButtonStyleType.SUBMIT}>
-          {t('buttons.submit')}
+          {t("buttons.submit")}
         </Button>
       </form>
     </Widget>

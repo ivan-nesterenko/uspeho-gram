@@ -35,7 +35,7 @@ export enum ButtonStyleType {
 }
 
 type ButtonProps = {
-  children: ReactNode;
+  children?: ReactNode;
   className?: string;
   buttonStyleType?: ButtonStyleType;
 } & DetailedHTMLProps<
