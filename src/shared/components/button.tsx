@@ -1,4 +1,5 @@
 import {
+  memo,
   type ButtonHTMLAttributes,
   type DetailedHTMLProps,
   type FC,
@@ -43,18 +44,22 @@ type ButtonProps = {
   HTMLButtonElement
 >;
 
-export const Button: FC<ButtonProps> = ({
-  children,
-  className,
-  buttonStyleType = ButtonStyleType.REGULAR,
-  ...props
-}) => {
-  return (
-    <button
-      className={`${twJoin(className, buttonStyleType)} break-words`}
-      {...props}
-    >
-      {children}
-    </button>
-  );
-};
+export const Button: FC<ButtonProps> = memo(
+  ({
+    children,
+    className,
+    buttonStyleType = ButtonStyleType.REGULAR,
+    ...props
+  }) => {
+    return (
+      <button
+        className={`${twJoin(className, buttonStyleType)} break-words`}
+        {...props}
+      >
+        {children}
+      </button>
+    );
+  },
+);
+
+Button.displayName = "Button";

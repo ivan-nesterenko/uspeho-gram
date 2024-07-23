@@ -11,7 +11,7 @@ type PositionElementAbsolutelyProps = {
   className?: string;
   bgEffects?: BgEffects;
   bgOnClick?: () => void;
-  customElemPossitionStyles?: string;
+  customElemPositionStyles?: string;
 };
 
 export const PositionElementAbsolutely: FC<PositionElementAbsolutelyProps> = ({
@@ -19,7 +19,7 @@ export const PositionElementAbsolutely: FC<PositionElementAbsolutelyProps> = ({
   className,
   bgEffects = BgEffects.NONE,
   bgOnClick,
-  customElemPossitionStyles,
+  customElemPositionStyles: customElemPossitionStyles,
 }) => {
   return (
     <div

@@ -9,30 +9,30 @@ import {
 } from "gram/shared";
 import { FilesICon } from "public/svgs";
 import { Folder } from "./folder";
-import { AnimationsTimingKeys, animations } from "gram/utils";
+import { animations } from "gram/utils";
 import { useTranslation } from "react-i18next";
 
 export const Edit = () => {
-  const { closeOverlay, closeAllOverlays } = useOverlay();
+  const { closeModal, closeAllModals } = useOverlay();
   const { t } = useTranslation("translation");
   const { className, disableStyle } = useOptionalStyle({
-    style: animations.fade,
-    timing: AnimationsTimingKeys.SHORT,
-    onDisable: closeOverlay,
+    animationStyle: "FADE",
+    timing: "SHORT",
+    onDisable: closeModal,
   });
   return (
     <PositionElementAbsolutely
       bgEffects={BgEffects.SHADING}
       className="justify-center"
       bgOnClick={disableStyle}
-      customElemPossitionStyles="top-20"
+      customElemPositionStyles="top-20"
     >
       <Widget optionalStyles={className}>
         <div className="bg flex w-full items-center justify-between pb-1 pl-4 pr-2">
           <span>{t("chatGroups.editFrolders.widget")}</span>
           <Button
             className="h-fit p-2 text-3xl text-black-200 hover:text-white hover:opacity-80"
-            onClick={closeAllOverlays}
+            onClick={closeAllModals}
             buttonStyleType={ButtonStyleType.NONE}
           >
             ×

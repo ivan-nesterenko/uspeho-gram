@@ -23,12 +23,12 @@ type WidgetProps = {
 };
 
 export const FormWidget: FC<WidgetProps> = ({ widgetType }) => {
-  const { closeOverlay } = useOverlay();
+  const { closeModal } = useOverlay();
   const { t } = useTranslation("translation", { keyPrefix: widgetType });
   const { className, disableStyle } = useOptionalStyle({
-    style: animations.fade,
-    timing: AnimationsTimingKeys.SHORT,
-    onDisable: closeOverlay,
+    animationStyle: "FADE",
+    timing: "SHORT",
+    onDisable: closeModal,
   });
   return (
     <PositionElementAbsolutely

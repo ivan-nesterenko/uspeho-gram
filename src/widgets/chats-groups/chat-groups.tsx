@@ -6,7 +6,7 @@ import { type FC } from "react";
 import { Edit } from "./edit";
 import { useTranslation } from "react-i18next";
 export const ChatGroups: FC = () => {
-  const { openOverlay } = useOverlay();
+  const { openModalWithHistory } = useOverlay();
   const { t } = useTranslation("translation");
   return (
     <div className="flex h-full flex-col  bg-black-600">
@@ -22,7 +22,7 @@ export const ChatGroups: FC = () => {
       <Folder name="Programing" />
       <Button
         buttonStyleType={ButtonStyleType.GROUP}
-        onClick={() => openOverlay(<Edit />)}
+        onClick={() => openModalWithHistory(<Edit />)}
       >
         <GroupSettingsIcon />
         {t("chatGroups.editFrolders.name")}

@@ -20,15 +20,12 @@ export default function Home() {
   const stopResizing = useCallback(() => {
     setIsResizing(false);
   }, []);
-  
-  const resize = useCallback(
-    (mouseMoveEvent: { clientX: number; }) => {
-      if (isResizing) {
-        const result = (mouseMoveEvent.clientX/window.outerWidth)*100
-        setSidebarWidth(
-          result>80?80:result<16?1:result
 
-        );
+  const resize = useCallback(
+    (mouseMoveEvent: { clientX: number }) => {
+      if (isResizing) {
+        const result = (mouseMoveEvent.clientX / window.outerWidth) * 100;
+        setSidebarWidth(result > 80 ? 80 : result < 16 ? 1 : result);
       }
     },
     [isResizing],
@@ -36,14 +33,18 @@ export default function Home() {
   useEffect(() => {
     window.addEventListener("mousemove", resize);
     window.addEventListener("mouseup", stopResizing);
-  })
-  console.log(sidebarWidth)
+  });
+  console.log(sidebarWidth);
   return (
     <Layout>
       <ChatGroups />
       <ChatWindow width={sidebarWidth} />
-      <Button onPointerDown={startResizing} buttonStyleType={ButtonStyleType.NONE} className="h-full w-3 bg-black-400"/>
-      <Correspondence width={100-sidebarWidth} />
+      <Button
+        onPointerDown={startResizing}
+        buttonStyleType={ButtonStyleType.NONE}
+        className="h-full w-3 bg-black-400"
+      />
+      <Correspondence width={100 - sidebarWidth} />
     </Layout>
   );
 }

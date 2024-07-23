@@ -8,7 +8,7 @@ const SignIn = () => {
   return (
     <PositionElementAbsolutely
       className="items-center justify-center bg-black-700"
-      customElemPossitionStyles="flex flex-col"
+      customElemPositionStyles="flex flex-col"
     >
       <SignInForm />
       <Link
@@ -17,7 +17,7 @@ const SignIn = () => {
           "rounded-md p-3 text-center text-purple-800 hover:bg-gray-800"
         }
       >
-        {t('forms.signIn.noAccount')}
+        {t("forms.signIn.noAccount")}
       </Link>
     </PositionElementAbsolutely>
   );

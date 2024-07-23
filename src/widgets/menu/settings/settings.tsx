@@ -19,19 +19,21 @@ import { animations, AnimationsTimingKeys } from "gram/utils";
 import { useTranslation } from "react-i18next";
 
 export const Settings = () => {
-  const { closeOverlay, openOverlay, closeAllOverlays } = useOverlay();
+  const { closeModal, openModalWithHistory, closeAllModals } = useOverlay();
   const { t } = useTranslation("translation");
   const { className, disableStyle } = useOptionalStyle({
-    style: animations.slideTop,
-    timing: AnimationsTimingKeys.SHORT,
-    onDisable: closeOverlay,
+    animationStyle: "SLIDE_TOP",
+    timing: "SHORT",
+    onDisable: closeModal,
   });
+  console.log(1);
+
   return (
     <PositionElementAbsolutely
       className="justify-center"
       bgEffects={BgEffects.SHADING}
       bgOnClick={disableStyle}
-      customElemPossitionStyles="top-20"
+      customElemPositionStyles="top-20"
     >
       <Widget className="gap-2 bg-black-300 pb-0" optionalStyles={className}>
         <div>
@@ -39,7 +41,7 @@ export const Settings = () => {
             <span>{t("menu.settings.name")}</span>
             <Button
               className="h-fit p-2 text-3xl text-black-200 hover:text-white hover:opacity-80"
-              onClick={closeAllOverlays}
+              onClick={closeAllModals}
               buttonStyleType={ButtonStyleType.NONE}
             >
               ×
@@ -58,7 +60,7 @@ export const Settings = () => {
           <Button
             buttonStyleType={ButtonStyleType.MENU}
             className="bg-black-400"
-            onClick={() => openOverlay(<Account />)}
+            onClick={() => openModalWithHistory(<Account />)}
           >
             <ContactsIcon />
             {t("menu.settings.account.name")}
@@ -73,7 +75,7 @@ export const Settings = () => {
           <Button
             buttonStyleType={ButtonStyleType.MENU}
             className="bg-black-400"
-            onClick={() => openOverlay(<FolderEdit />)}
+            onClick={() => openModalWithHistory(<FolderEdit />)}
           >
             <SettingsFolderIcon />
             {t("menu.settings.folders")}

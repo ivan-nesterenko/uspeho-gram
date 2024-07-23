@@ -22,12 +22,12 @@ type EditWidgetProps = {
   widgetType: EditWidgetType;
 };
 export const EditWidget: FC<EditWidgetProps> = ({ widgetType }) => {
-  const { closeOverlay } = useOverlay();
+  const { closeModal } = useOverlay();
   const { t } = useTranslation("translation");
   const { className, disableStyle } = useOptionalStyle({
-    style: animations.fade,
-    timing: AnimationsTimingKeys.SHORT,
-    onDisable: closeOverlay,
+    animationStyle: "FADE",
+    timing: "SHORT",
+    onDisable: closeModal,
   });
   return (
     <PositionElementAbsolutely

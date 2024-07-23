@@ -4,11 +4,11 @@ import { type FC } from "react";
 import { Menu as MenuWindow } from "gram/widgets";
 
 export const Menu: FC = () => {
-  const { openOverlay } = useOverlay();
+  const { openModalWithHistory } = useOverlay();
   return (
     <Button
       buttonStyleType={ButtonStyleType.GROUP}
-      onClick={() => openOverlay(<MenuWindow />)}
+      onClick={() => openModalWithHistory(<MenuWindow />)}
     >
       <MenuIcon />
     </Button>

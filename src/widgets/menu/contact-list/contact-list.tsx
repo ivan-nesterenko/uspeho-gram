@@ -14,12 +14,12 @@ import { animations, AnimationsTimingKeys } from "gram/utils";
 import { useTranslation } from "react-i18next";
 
 export const ContactList = () => {
-  const { closeOverlay } = useOverlay();
+  const { closeModal } = useOverlay();
   const { t } = useTranslation("translation");
   const { className, disableStyle } = useOptionalStyle({
-    style: animations.slideTop,
-    timing: AnimationsTimingKeys.SHORT,
-    onDisable: closeOverlay,
+    animationStyle: "SLIDE_TOP",
+    timing: "SHORT",
+    onDisable: closeModal,
   });
   return (
     <PositionElementAbsolutely

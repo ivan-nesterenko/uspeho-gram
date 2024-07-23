@@ -15,12 +15,12 @@ import { animations, AnimationsTimingKeys } from "gram/utils";
 import { useTranslation } from "react-i18next";
 
 export const Account = () => {
-  const { closeOverlay, openOverlay, closeAllOverlays } = useOverlay();
+  const { closeModal, openModalWithHistory, closeAllModals } = useOverlay();
   const { t } = useTranslation("translation");
   const { className, disableStyle } = useOptionalStyle({
-    style: animations.slideRight,
-    timing: AnimationsTimingKeys.SHORT,
-    onDisable: closeOverlay,
+    animationStyle: "SLIDE_RIGHT",
+    timing: "SHORT",
+    onDisable: closeModal,
   });
   return (
     <PositionElementAbsolutely
@@ -38,7 +38,7 @@ export const Account = () => {
           </div>
           <Button
             className="h-fit p-2 text-3xl text-black-200 hover:text-white hover:opacity-80"
-            onClick={closeAllOverlays}
+            onClick={closeAllModals}
             buttonStyleType={ButtonStyleType.NONE}
           >
             ×
@@ -58,10 +58,12 @@ export const Account = () => {
             buttonStyleType={ButtonStyleType.MENU}
             className="justify-between"
             onClick={() => {
-              openOverlay(<EditWidget widgetType={EditWidgetType.NAME} />);
+              openModalWithHistory(
+                <EditWidget widgetType={EditWidgetType.NAME} />,
+              );
             }}
           >
-            <div className="max-phoneM:gap-2 flex items-center gap-5">
+            <div className="flex items-center gap-5 max-phoneM:gap-2">
               <ContactsIcon />
               <span>{t("menu.settings.account.userName.name")}</span>
             </div>
@@ -71,7 +73,7 @@ export const Account = () => {
             buttonStyleType={ButtonStyleType.MENU}
             className="justify-between"
           >
-            <div className="max-phoneM:gap-2 flex items-center gap-5">
+            <div className="flex items-center gap-5 max-phoneM:gap-2">
               <CallIcon />
               <span>{t("menu.settings.account.userPhone")}</span>
             </div>
@@ -83,10 +85,12 @@ export const Account = () => {
             buttonStyleType={ButtonStyleType.MENU}
             className="justify-between"
             onClick={() => {
-              openOverlay(<EditWidget widgetType={EditWidgetType.USERNAME} />);
+              openModalWithHistory(
+                <EditWidget widgetType={EditWidgetType.USERNAME} />,
+              );
             }}
           >
-            <div className="max-phoneM:gap-2 flex items-center gap-5">
+            <div className="flex items-center gap-5 max-phoneM:gap-2">
               <EmailIcon />
               <span>{t("menu.settings.account.username")}</span>
             </div>

@@ -13,15 +13,12 @@ export enum AnimationsTimingKeys {
 }
 export const animationsTimings = {
   [AnimationsTimingKeys.SHORT]: {
-    className: "duration-[200ms]",
     ms: 200,
   },
   [AnimationsTimingKeys.MEDIUM]: {
-    className: "duration-[500ms]",
     ms: 500,
   },
   [AnimationsTimingKeys.LONG]: {
-    className: "duration-[700ms]",
     ms: 700,
   },
 };

@@ -8,7 +8,7 @@ const SignUp = () => {
   return (
     <PositionElementAbsolutely
       className="items-center justify-center bg-black-700"
-      customElemPossitionStyles="flex flex-col"
+      customElemPositionStyles="flex flex-col"
     >
       <SignUpForm />
       <Link
@@ -17,7 +17,7 @@ const SignUp = () => {
           "rounded-md p-3 text-center text-purple-800 hover:bg-gray-800"
         }
       >
-        {t('forms.signUp.hasAnAccount')}
+        {t("forms.signUp.hasAnAccount")}
       </Link>
     </PositionElementAbsolutely>
   );

@@ -1,2 +1,2 @@
-export { useOptionalStyle } from "./use-optional-style";
-export { ModalOverlay, useOverlay } from "./use-modal-overlay";
+export { useAnimate } from "./useAnimate";
+export { ModalProvider as ModalOverlay, useOverlay } from "./use-modal";
