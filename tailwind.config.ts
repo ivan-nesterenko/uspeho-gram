@@ -1,5 +1,4 @@
 import { type Config } from "tailwindcss";
-
 enum ColorTheme {
   BLACK_200 = "black-200",
   BLACK_250 = "black-250",
@@ -138,5 +137,5 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 } satisfies Config;
